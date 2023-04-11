@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import axios from "axios";
-import MovieList from './MovieList';
-import MovieDetails from './MovieDetails';
+import MovieList from '../Movies/MovieList';
+import MovieDetails from '../Movies/MovieDetails';
 
-import Spinner from './Spinner';
-import MoviesList from '../interfaces';
+import Spinner from '../Spinner/Spinner';
+import MoviesList from '../../interfaces';
+import InputText from '../Shared/InputText';
 
 const movieEndpoint = "https://swapi.dev/api/films/?format=json";
 
@@ -56,19 +57,32 @@ export default function Main(props: any) {
     }
 
 
+    const sortBy = (arg0: string) => {
+
+    }
+
     return (
         <>
             {loading ? <Spinner /> : hasError ? <div className="alert alert-danger" role="alert">{`Something went wrong!!.... ${errorMsg}`}</div> :
                 <div className='container-fluid'>
                     <div className="row">
-                        <form className="row g-3">
+                        <form className="row g-3 mb-5">
                             <div className="col-auto">
-                                <button type="button" onClick={()=>console.log("sort")} className="btn btn-primary mb-3">Sort by...</button>
+
+                                <div className="dropdown">
+                                    <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sort by...
+                                    </button>
+                                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a className="dropdown-item" onClick={() => sortBy('year')}>Year</a>
+                                        <a className="dropdown-item" onClick={() => sortBy('episode')}>Episode</a>
+                                    </div>
+                                </div>
+                                {/* <button type="button" onClick={() => console.log("sort")} className="btn btn-primary mb-3">Sort by...</button> */}
                             </div>
                             <div className="col">
                                 <label htmlFor="inputPassword2" className="visually-hidden">Password</label>
-                                <input autoComplete='off' type="text" className="form-control" id="searchText" value={searchValue} onChange={onChangeHandler}
-                                    placeholder="Type to search..." />
+                                <InputText id="search-input" searchValue={searchValue} onChangeHandler={onChangeHandler} placeholder={"Type to search..."} />                                
                             </div>
                         </form>
                     </div>

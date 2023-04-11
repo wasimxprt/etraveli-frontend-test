@@ -1,6 +1,6 @@
 import React from 'react';
-import MoviesList from '../interfaces';
-import StarRating from './StarRating';
+import MoviesList from '../../interfaces';
+import StarRating from '../StarRating/StarRating';
 
 interface MovieListProps {
     movies: MoviesList[];

@@ -1,8 +1,8 @@
 import React from 'react';
-import Movie from '../interfaces';
+import Movie from '../../interfaces';
 import axios from "axios";
-import StarRating from './StarRating';
-import Spinner from './Spinner';
+import StarRating from '../StarRating/StarRating';
+import Spinner from '../Spinner/Spinner';
 
 interface MovieProps {
     title?: string,
